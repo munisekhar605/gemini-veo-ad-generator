@@ -39,7 +39,7 @@ import {
   ExpandLess,
   ChevronLeft,
   ChevronRight,
-  SettingsInputSvr,
+  Settings,
   MovieFilter,
   OfflineBolt,
 } from '@mui/icons-material';
@@ -53,7 +53,6 @@ import {
   DEFAULT_VIDEO_QC_THRESHOLD,
   DEFAULT_MAX_VIDEO_QC_REGEN,
 } from '../../constants/controls';
-import ModelBadge from '../common/ModelBadge';
 
 interface VideoPlayerProps {
   results: VideoResult[];
@@ -140,12 +139,12 @@ export default function VideoPlayer({
     usePipelineStore.getState().setVeoResolution(v);
   };
   const [numVariants, setNumVariants] = useState(DEFAULT_NUM_VIDEO_VARIANTS);
-  const [compression, setCompression] = useState('optimized');
+  const [compression] = useState('optimized');
   const [useReferenceImages, setUseReferenceImages] = useState(true);
-  const [qcThreshold, setQcThreshold] = useState(DEFAULT_VIDEO_QC_THRESHOLD);
-  const [maxQcRegen, setMaxQcRegen] = useState(DEFAULT_MAX_VIDEO_QC_REGEN);
-  const [negativePrompt, setNegativePrompt] = useState('');
-  const [seed, setSeed] = useState(() => Math.floor(Math.random() * 2 ** 31).toString());
+  const [qcThreshold] = useState(DEFAULT_VIDEO_QC_THRESHOLD);
+  const [maxQcRegen] = useState(DEFAULT_MAX_VIDEO_QC_REGEN);
+  const [negativePrompt] = useState('');
+  const [seed] = useState(() => Math.floor(Math.random() * 2 ** 31).toString());
   const [generateAudio, setGenerateAudio] = useState(true);
   const [expandedPrompts, setExpandedPrompts] = useState<Record<number, boolean>>({});
   const [expandedQcContext, setExpandedQcContext] = useState<Record<number, boolean>>({});
@@ -221,7 +220,7 @@ export default function VideoPlayer({
           <Box sx={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', bg: 'primary.main', backgroundImage: 'linear-gradient(to bottom, #6366f1, #3b82f6)' }} />
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3.5 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <SettingsInputSvr sx={{ color: 'primary.main', fontSize: 18 }} />
+              <Settings sx={{ color: 'primary.main', fontSize: 18 }} />
               <Typography variant="subtitle2" sx={{ fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'text.primary', fontSize: 12 }}>
                 Render Pipeline Settings
               </Typography>

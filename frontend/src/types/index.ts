@@ -207,23 +207,27 @@ export interface VideoSelectRequest {
   variant_index: number;
 }
 
-export enum JobStatus {
-  PENDING = 'pending',
-  RUNNING = 'running',
-  COMPLETED = 'completed',
-  FAILED = 'failed',
-  CANCELLED = 'cancelled',
-}
+export const JobStatus = {
+  PENDING: 'pending',
+  RUNNING: 'running',
+  COMPLETED: 'completed',
+  FAILED: 'failed',
+  CANCELLED: 'cancelled',
+} as const;
 
-export enum JobStep {
-  SCRIPT = 'script',
-  AVATAR = 'avatar',
-  AVATAR_SELECTION = 'avatar_selection',
-  STORYBOARD = 'storyboard',
-  VIDEO = 'video',
-  STITCH = 'stitch',
-  REVIEW = 'review',
-}
+export type JobStatus = typeof JobStatus[keyof typeof JobStatus];
+
+export const JobStep = {
+  SCRIPT: 'script',
+  AVATAR: 'avatar',
+  AVATAR_SELECTION: 'avatar_selection',
+  STORYBOARD: 'storyboard',
+  VIDEO: 'video',
+  STITCH: 'stitch',
+  REVIEW: 'review',
+} as const;
+
+export type JobStep = typeof JobStep[keyof typeof JobStep];
 
 export interface JobProgress {
   current_step: JobStep;
@@ -263,12 +267,14 @@ export interface PipelineLog {
   metadata?: Record<string, unknown>;
 }
 
-export enum ReviewStatus {
-  PENDING = 'pending',
-  APPROVED = 'approved',
-  REJECTED = 'rejected',
-  CHANGES_REQUESTED = 'changes_requested',
-}
+export const ReviewStatus = {
+  PENDING: 'pending',
+  APPROVED: 'approved',
+  REJECTED: 'rejected',
+  CHANGES_REQUESTED: 'changes_requested',
+} as const;
+
+export type ReviewStatus = typeof ReviewStatus[keyof typeof ReviewStatus];
 
 export interface SSEEvent {
   event: string;
